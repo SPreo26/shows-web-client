@@ -1,0 +1,5 @@
+<h3> Edit show info</h3>
+<br>
+<%= form_tag('/shows/1', method: 'patch') do %>
+<%= render "form", form_is_edit: @form_is_edit %>
+<% end %>

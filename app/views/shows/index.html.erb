@@ -1,0 +1,5 @@
+List of all shows
+<% @shows.each do |show| %>
+  <% @show = show #need to convert block var to instance var to pass to partial below%> 
+  <%= render "show", show: @show %>
+<% end %>

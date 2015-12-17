@@ -1,0 +1,9 @@
+<ul>
+  <% @show_fields.each do |field| %>
+    <li>
+      <%= @show.send(field) %>
+    </li>
+  <% end %>
+</ul>
+<p><%= button_to "Delete", "/shows/#{@show.id}", method: :delete %></p>
+<br>

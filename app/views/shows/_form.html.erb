@@ -1,0 +1,20 @@
+  <% @show_fields.each do |field|%>
+
+    <% if @form_is_edit %>
+      <% @field_text = @show.send(field) %>
+      <% @submit_text = "Update Show" %>
+    <% else %>
+      <% @field_text = "" %>
+      <% @sumbit_text = "Add Show" %>
+    <% end %>
+
+    <div>
+      <%= label_tag field%>
+      <%= text_area_tag field, @field_text%>
+    </div>
+
+  <% end %>
+
+  <div>
+    <%= submit_tag @sumbit_text %>
+  </div>
