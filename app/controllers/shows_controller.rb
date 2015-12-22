@@ -24,11 +24,8 @@ class ShowsController < ApplicationController
 
   def create
     fill_params_hash
-    @show = Unirest.post("http://localhost:3000/shows.json", headers: {"Accept" => "application/json"}, 
-      parameters: show_params_hash).body
-    # p "AAAAAAAAaaaaaaa"
-    # p @show
-    redirect_to "/shows/#{@show["id"]}"
+    @show = Show.create
+    redirect_to "/shows/#{@show.id}"
   end
 
   def edit
