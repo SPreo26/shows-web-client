@@ -10,7 +10,6 @@ class ShowsController < ApplicationController
 
   def index
     @shows = Show.all
-    p "AAAAAAAAaaaaaaa"
     p @shows
   end
 

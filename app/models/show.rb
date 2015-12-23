@@ -1,6 +1,6 @@
 class Show
 
-  attr_accessor :id, :datetime, :artsists, :venue, :city, :region, :countrya
+  attr_accessor :id, :datetime, :artsists, :venue, :city, :region, :country
 
   def initialize(hash)
     @id = hash["id"]
@@ -14,7 +14,7 @@ class Show
 
   def self.all
     shows = []
-    shows_hashes = Unirest.get("http://localhost:3000/shows/index.json").body 
+    shows_hashes = Unirest.get("#{ENV['API_BASE_URL']}shows.json", headers: {"X-User-Email": "yo@yo.yo", "Authorization": "Token token=ABC123"}).body 
     shows_hashes.each do |show|
       shows << Show.new(show)
     end
@@ -22,21 +22,21 @@ class Show
   end
 
   def self.find(id)
-    Show.new( Unirest.get("http://localhost:3000/shows/#{id}.json").body )    
+    Show.new( Unirest.get("#{ENV['API_BASE_URL']}shows/#{id}.json", headers: {"X-User-Email": "yo@yo.yo", "Authorization": "Token token=ABC123"}).body )    
   end
 
   def create(hash)
-    @show = Unirest.post("http://localhost:3000/shows.json", headers: {"Accept" => "application/json"}, 
+    @show = Unirest.post("#{ENV['API_BASE_URL']}shows.json", headers: {"X-User-Email": "yo@yo.yo", "Authorization": "Token token=ABC123"}, 
       parameters: hash).body
   end
 
   def update(hash)
-    @show = Unirest.patch("http://localhost:3000/shows/#{@id}.json", headers: {"Accept" => "application/json"}, 
+    @show = Unirest.patch("#{ENV['API_BASE_URL']}shows/#{@id}.json", headers: {"X-User-Email": "yo@yo.yo", "Authorization": "Token token=ABC123"}, 
       parameters: hash).body
   end
 
   def destroy
-    @show = Unirest.delete("http://localhost:3000/shows/#{@id}.json", headers: {"Accept" => "application/json"}).body
+    @show = Unirest.delete("#{ENV['API_BASE_URL']}shows/#{@id}.json", headers: {"X-User-Email": "yo@yo.yo", "Authorization": "Token token=ABC123"}).body
   end
 
 end
